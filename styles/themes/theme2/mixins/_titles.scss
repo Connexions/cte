@@ -7,8 +7,10 @@
   color: $title-color;
   font-size: size-scale(5);
   margin-bottom: size-scale(2);
-  bookmark-level: 1;
-  page-break-after: avoid;
+  @if PLATFORM() == 'PDF' {
+    bookmark-level: 1;
+  }
+  @include pageBreak('AFTER', avoid);
 }
 
 //h2 styles
@@ -20,8 +22,10 @@
   color: $title-color;
   font-size: size-scale(4);
   margin-bottom: size-scale(1);
-  bookmark-level: 2;
-  page-break-after: avoid;
+  @if PLATFORM() == 'PDF' {
+    bookmark-level: 2;
+  }
+  @include pageBreak('AFTER', avoid);
 }
 
 //h3 styles
@@ -32,7 +36,7 @@
   font-size: size-scale(3);
   font-weight: bold;
   margin-bottom: size-scale(-1);
-  page-break-after: avoid;
+  @include pageBreak('AFTER', avoid);
 }
 
 //h4 styles

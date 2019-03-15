@@ -419,131 +419,6 @@ template {
 [hidden] {
   display: none; }
 
-/*******************
-        RULES
-*******************/
-html {
-  prince-image-resolution: 150dpi;
-  prince-background-image-resolution: 150dpi; }
-
-div.book > div.preface {
-  counter-reset: page 1; }
-
-div.book > div.preface {
-  page: preface; }
-
-div.book > div.toc {
-  page: table-of-contents; }
-
-div.book > div.chapter {
-  page: chapter;
-  prince-page-group: start; }
-
-div.book > div.appendix {
-  page: appendix; }
-
-.landscape {
-  page: landscape; }
-
-[data-type="chapter"],
-body > [data-type="page"] {
-  page-break-before: right !important;
-  page-break-after: left !important; }
-
-@page {
-  margin: 0.8in 1in;
-  font-size: xx-small;
-  font-family: "Noto Sans", sans-serif;
-  @footnotes {
-    border-top: solid black thin;
-    padding-top: 1em; } }
-
-@page :left {
-  @top-left-corner {}  @top-right-corner {}  @bottom-left-corner {}  @bottom-right-corner {}  @top-left {
-    content: counter(page);
-    font-family: "Noto Sans", sans-serif;
-    color: #324456;
-    font-size: 12px; }
-  @top-center {}  @top-right {
-    content: string(cnx-header);
-    font-family: "Noto Sans", sans-serif;
-    color: #324456;
-    font-size: 12px; }
-  @bottom-left {
-    color: grey;
-    font-weight: thin;
-    content: "This OpenStax book is available for free at " string(cnx-collection-url);
-    prince-text-replace: ":9680" "\2019";
-    font-family: "Noto Sans", sans-serif;
-    color: #324456;
-    font-size: 12px; }
-  @bottom-center {}  @bottom-right {}  @left-top {}  @left-middle {}  @left-bottom {}  @right-top {}  @right-middle {}  @right-bottom {} }
-
-@page :right {
-  @top-left-corner {}  @top-right-corner {}  @bottom-left-corner {}  @bottom-right-corner {}  @top-left {
-    content: string(cnx-header);
-    font-family: "Noto Sans", sans-serif;
-    color: #324456;
-    font-size: 12px; }
-  @top-center {}  @top-right {
-    content: counter(page);
-    font-family: "Noto Sans", sans-serif;
-    color: #324456;
-    font-size: 12px; }
-  @bottom-left {}  @bottom-center {}  @bottom-right {}  @left-top {}  @left-middle {}  @left-bottom {}  @right-top {}  @right-middle {}  @right-bottom {} }
-
-@page table-of-contents {
-  @top-left-corner {
-    content: ""; }
-  @top-left {
-    content: ""; }
-  @top-right-corner {
-    content: ""; }
-  @top-right {
-    content: ""; } }
-
-@page preface:blank {
-  @top-left {
-    content: ""; } }
-
-@page preface:right {
-  @top-right {
-    content: counter(page); } }
-
-@page chapter:nth(1) {
-  @top-left-corner {
-    background-color: transparent;
-    color: #FFFFFF;
-    font-weight: bold;
-    content: " "; }
-  @top-right-corner {
-    background-color: transparent;
-    color: #FFFFFF;
-    font-weight: bold;
-    content: " "; }
-  @top-left {
-    font-family: "Noto Sans", sans-serif;
-    color: #324456;
-    font-size: 12px;
-    background-color: transparent;
-    color: #FFFFFF;
-    font-weight: bold; }
-  @top-center {
-    background-color: transparent;
-    color: #FFFFFF;
-    font-weight: bold; }
-  @top-right {
-    font-family: "Noto Sans", sans-serif;
-    color: #324456;
-    font-size: 12px;
-    background-color: transparent;
-    color: #FFFFFF;
-    font-weight: bold; } }
-
-@page landscape {
-  prince-rotate-body: landscape;
-  prince-shrink-to-fit: auto; }
-
 /* -------------------------
  * Module/page level titles
  * ------------------------
@@ -671,6 +546,7 @@ body {
   font-family: "Noto Sans", sans-serif;
   line-height: 15px; }
 
+/* TODO: These should be scoped in a Page */
 a[href] {
   color: #027EB5;
   text-decoration: none;
@@ -683,9 +559,9 @@ a[href] {
     font-weight: 100; }
 
 /* -------------------------
- * Book TOC
- * ------------------------
- */
+  * Book TOC
+  * ------------------------
+  */
 nav#toc > ol {
   padding: 0; }
 
@@ -782,12 +658,14 @@ nav#toc > ol > li {
  * Figures/Subfigures
  * ---------------------------------------------------
  */
+/* TODO: These should be scoped in a Page */
 img {
   display: block;
   margin: auto;
   max-width: 6.5in;
   width: 100%; }
 
+/* TODO: These should be scoped in a Page */
 .os-figure,
 .preface .os-figure {
   display: block;
@@ -989,6 +867,7 @@ img {
   margin: 0;
   padding: 0; }
 
+/* TODO: These should be scoped in a Page */
 .os-table {
   margin: 0 auto;
   padding: 0;
@@ -1109,6 +988,7 @@ img {
       line-height: 1.6em;
       margin-left: 5px; }
 
+/* TODO: These should be scoped in a Page */
 table td.text-align-right {
   text-align: right; }
 
@@ -1123,6 +1003,7 @@ table td img {
   width: 100%;
   position: inherit; }
 
+/* TODO: These should be scoped in a Page */
 div.note div.table table thead tr:first-of-type th {
   white-space: nowrap; }
   div.note div.table table thead tr:first-of-type th:not(:last-child) {
@@ -1208,17 +1089,144 @@ div.note div.table table thead tr:first-of-type th {
     margin: 0;
     padding: 0; }
 
-[data-type="footnote-refs"]::footnote-call, [data-type="footnote-refs"]::footnote-marker {
+[data-type="footnote-refs"]::footnote-call,
+[data-type="footnote-refs"]::footnote-marker {
   content: none; }
 
 @page {
   @footnotes {
     border-top: solid #6D6F71 thin; } }
 
+/*******************
+          RULES
+  *******************/
+html {
+  prince-image-resolution: 150dpi;
+  prince-background-image-resolution: 150dpi; }
+
+div.book > div.preface {
+  counter-reset: page 1; }
+
+div.book > div.preface {
+  page: preface; }
+
+div.book > div.toc {
+  page: table-of-contents; }
+
+div.book > div.chapter {
+  page: chapter;
+  prince-page-group: start; }
+
+div.book > div.appendix {
+  page: appendix; }
+
+.landscape {
+  page: landscape; }
+
+[data-type="chapter"],
+body > [data-type="page"] {
+  page-break-before: right !important;
+  page-break-after: left !important; }
+
+@page {
+  margin: 0.8in 1in;
+  font-size: xx-small;
+  font-family: "Noto Sans", sans-serif;
+  @footnotes {
+    border-top: solid black thin;
+    padding-top: 1em; } }
+
+@page :left {
+  @top-left-corner {}  @top-right-corner {}  @bottom-left-corner {}  @bottom-right-corner {}  @top-left {
+    content: counter(page);
+    font-family: "Noto Sans", sans-serif;
+    color: #324456;
+    font-size: 12px; }
+  @top-center {}  @top-right {
+    content: string(cnx-header);
+    font-family: "Noto Sans", sans-serif;
+    color: #324456;
+    font-size: 12px; }
+  @bottom-left {
+    color: grey;
+    font-weight: thin;
+    content: "This OpenStax book is available for free at " string(cnx-collection-url);
+    prince-text-replace: ":9680" "\2019";
+    font-family: "Noto Sans", sans-serif;
+    color: #324456;
+    font-size: 12px; }
+  @bottom-center {}  @bottom-right {}  @left-top {}  @left-middle {}  @left-bottom {}  @right-top {}  @right-middle {}  @right-bottom {} }
+
+@page :right {
+  @top-left-corner {}  @top-right-corner {}  @bottom-left-corner {}  @bottom-right-corner {}  @top-left {
+    content: string(cnx-header);
+    font-family: "Noto Sans", sans-serif;
+    color: #324456;
+    font-size: 12px; }
+  @top-center {}  @top-right {
+    content: counter(page);
+    font-family: "Noto Sans", sans-serif;
+    color: #324456;
+    font-size: 12px; }
+  @bottom-left {}  @bottom-center {}  @bottom-right {}  @left-top {}  @left-middle {}  @left-bottom {}  @right-top {}  @right-middle {}  @right-bottom {} }
+
+@page table-of-contents {
+  @top-left-corner {
+    content: ""; }
+  @top-left {
+    content: ""; }
+  @top-right-corner {
+    content: ""; }
+  @top-right {
+    content: ""; } }
+
+@page preface:blank {
+  @top-left {
+    content: ""; } }
+
+@page preface:right {
+  @top-right {
+    content: counter(page); } }
+
+@page chapter:nth(1) {
+  @top-left-corner {
+    background-color: transparent;
+    color: #FFFFFF;
+    font-weight: bold;
+    content: " "; }
+  @top-right-corner {
+    background-color: transparent;
+    color: #FFFFFF;
+    font-weight: bold;
+    content: " "; }
+  @top-left {
+    font-family: "Noto Sans", sans-serif;
+    color: #324456;
+    font-size: 12px;
+    background-color: transparent;
+    color: #FFFFFF;
+    font-weight: bold; }
+  @top-center {
+    background-color: transparent;
+    color: #FFFFFF;
+    font-weight: bold; }
+  @top-right {
+    font-family: "Noto Sans", sans-serif;
+    color: #324456;
+    font-size: 12px;
+    background-color: transparent;
+    color: #FFFFFF;
+    font-weight: bold; } }
+
+@page landscape {
+  prince-rotate-body: landscape;
+  prince-shrink-to-fit: auto; }
+
 /* -------------------------
  * Intro to Business Notes
  * ------------------------
  */
+/* TODO: These should be scoped in a Page */
 [data-type="note"].exploring-business-careers {
   width: 100%;
   box-decoration-break: slice;

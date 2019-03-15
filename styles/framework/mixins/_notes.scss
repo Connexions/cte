@@ -36,7 +36,7 @@
 @mixin baseNoteTitle () {
   font-weight: settings(note-title-weight);
   font-family: font-map(serif);
-  page-break-after: avoid;
+  @include pageBreak('AFTER', avoid);
 }
 
 //todo: nest notes: come up with a dynamic title selector
@@ -124,6 +124,7 @@
 
 
 @mixin note($noteSettings) {
+  /* TODO: These should be scoped in a Page */
   @each $note in $noteSettings {
     $getScheme: map-get($note, color-scheme);
     $noteType: map-get($note, noteType);

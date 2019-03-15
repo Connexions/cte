@@ -7,8 +7,8 @@
 .book>.part>.appendix,
 .book>.part>.colophon,
 .book>.part>.preface {
-    page-break-before: right !important;
-    page-break-after: left !important;
+    @include pageBreak('BEFORE',  right !important;
+    @include pageBreak('AFTER',  left !important;
 }
 
 
@@ -26,8 +26,10 @@
   margin: 0;
   position: relative;
   //.scale-padding(1, margin-bottom);
-  bookmark-level: 1;
-  page-break-after: avoid;
+  @if PLATFORM() == 'PDF' {
+    bookmark-level: 1;
+  }
+  @include pageBreak('AFTER', avoid);
 }
 @mixin titles-h1-style-numbered($font: $font-family-titles, $title-color: $h1_title_color, $number-border: $h1-number-border, $number-color: $h1-number-color) {
   @include titles-h1-style();
@@ -55,8 +57,10 @@
   font-family: $font;
   color: $title-color;
   //.font-scale(2);
-  bookmark-level: 2;
-  page-break-after: avoid;
+  @if PLATFORM() == 'PDF' {
+    bookmark-level: 2;
+  }
+  @include pageBreak('AFTER', avoid);
   //margin-top to replicate the original base styles, should change it to margin-bottom on the element before titles
   //.scale-padding(1, margin-top);
   //.scale-padding(0, margin-bottom);
@@ -105,8 +109,10 @@
   //.scale-padding(0, margin-top);
   color: $title-color;
   font-weight: bold;
-  bookmark-level: none;
-  page-break-after: avoid;
+  @if PLATFORM() == 'PDF' {
+    bookmark-level: none;
+  }
+  @include pageBreak('AFTER', avoid);
 }
 
 //h4 styles

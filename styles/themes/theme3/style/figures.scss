@@ -2,10 +2,12 @@
  * Figures/Subfigures
  * ---------------------------------------------------
  */
+/* TODO: These should be scoped in a Page */
 img {
   @include center-image();
 }
 
+/* TODO: These should be scoped in a Page */
 .os-figure,
 .preface .os-figure {
   @include center-image();
@@ -17,8 +19,10 @@ img {
 
   > figure {
     padding-bottom: size-scale(-4);
-    img {
-      max-width: settings(figure-img-width);
+    @if PLATFORM() == 'PDF' {
+      img {
+        max-width: settings(figure-img-width);
+      }
     }
   }
 

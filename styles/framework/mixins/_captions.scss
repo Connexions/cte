@@ -14,14 +14,16 @@
 @mixin caption-text-style() {
   color: color-map(caption);
   text-align: left;
-  page-break-before: avoid;
+  @include pageBreak('BEFORE', avoid);
   line-height: settings(caption-line-height);
 }
 
 @mixin center-image() {
   display: block;
   margin: auto;
-  max-width: PAGE_CONTENT_WIDTH();
+  @if PLATFORM() == "PDF" {
+    max-width: PAGE_CONTENT_WIDTH();
+  }
   width: 100%;
 }
 

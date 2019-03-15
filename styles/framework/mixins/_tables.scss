@@ -3,12 +3,14 @@
   margin: 0 auto;
   padding: 0;
   border: none;
-  page-break-inside: auto;
+  @include pageBreak('INSIDE', auto);
   display: table;
 
   table {
     border-collapse: collapse;
-    prince-caption-page: all;
+    @if PLATFORM() == 'PDF' {
+      prince-caption-page: all;
+    }
     line-height: auto; //todo
     margin-bottom: size-scale(0);
   }
@@ -113,7 +115,7 @@
 @mixin baseTableBody() {
   tbody {
     tr {
-      page-break-inside: avoid;
+      @include pageBreak('INSIDE', avoid);
 
       td {}
     }
@@ -138,6 +140,7 @@
 }
 @mixin titleInCaption() {}
 @mixin tables($tableTypes) {
+  /* TODO: These should be scoped in a Page */
   .os-table {
     @include baseTableStyle();
     @each $getTableType in $tableTypes {
